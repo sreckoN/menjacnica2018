@@ -1,8 +1,5 @@
 package menjacnica.gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,14 +7,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-import menjacnica.Valuta;
+import menjacnica.gui.kontroler.GUIKontroler;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -40,7 +36,6 @@ public class DodajKursGUI extends JFrame {
 	private JButton btnDodaj;
 	private JButton btnOdus;
 
-	private MenjacnicaGUI glavniProzor;
 	private JSpinner spinnerSifra;
 
 	/**
@@ -70,9 +65,6 @@ public class DodajKursGUI extends JFrame {
 		contentPane.add(getTextFieldSkraceniNaziv());
 		contentPane.add(getBtnDodaj());
 		contentPane.add(getBtnOdus());
-		
-		//podesavanje
-		this.glavniProzor = glavniProzor;
 				
 	}
 
@@ -184,28 +176,7 @@ public class DodajKursGUI extends JFrame {
 	}
 	
 	private void unesiKurs() {
-		try {
-			Valuta valuta = new Valuta();
-
-			// Punjenje podataka o valuti
-			valuta.setNaziv(textFieldNaziv.getText());
-			valuta.setSkraceniNaziv(textFieldSkraceniNaziv.getText());
-			valuta.setSifra((Integer)(spinnerSifra.getValue()));
-			valuta.setProdajni(Double.parseDouble(textFieldProdajniKurs.getText()));
-			valuta.setKupovni(Double.parseDouble(textFieldKupovniKurs.getText()));
-			valuta.setSrednji(Double.parseDouble(textFieldSrednjiKurs.getText()));
-			
-			// Dodavanje valute u kursnu listu
-			glavniProzor.sistem.dodajValutu(valuta);
-
-			// Osvezavanje glavnog prozora
-			glavniProzor.prikaziSveValute();
-			
-			//Zatvaranje DodajValutuGUI prozora
-			dispose();
-		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(contentPane, e1.getMessage(),
-					"Greska", JOptionPane.ERROR_MESSAGE);
-		}
+		GUIKontroler.unesiKurs(textFieldNaziv.getText(), textFieldSkraceniNaziv.getText(), (Integer)(spinnerSifra.getValue()), Integer.parseInt(textFieldProdajniKurs.getText()), Integer.parseInt(textFieldKupovniKurs.getText()), Integer.parseInt(textFieldSrednjiKurs.getText()));
+		dispose();
 	}
 }

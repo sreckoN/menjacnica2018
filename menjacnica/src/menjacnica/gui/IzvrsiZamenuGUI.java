@@ -1,8 +1,5 @@
 package menjacnica.gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,23 +7,20 @@ import javax.swing.JLabel;
 
 import java.awt.Dimension;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ButtonGroup;
 
 import menjacnica.Valuta;
+import menjacnica.gui.kontroler.GUIKontroler;
+
 import java.awt.Toolkit;
 
 public class IzvrsiZamenuGUI extends JFrame {
@@ -50,7 +44,6 @@ public class IzvrsiZamenuGUI extends JFrame {
 	private JLabel lblKonacniIznos;
 	private JTextField textFieldKonacniIznos;
 
-	private MenjacnicaGUI glavniProzor;
 	private Valuta valuta;
 
 	/**
@@ -82,8 +75,6 @@ public class IzvrsiZamenuGUI extends JFrame {
 		contentPane.add(getLblKonacniIznos());
 		contentPane.add(getTextFieldKonacniIznos());
 		
-		//podesavanje
-		this.glavniProzor = glavniProzor;
 		this.valuta = valuta;
 				
 		prikaziValutu();
@@ -240,16 +231,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 	}
 	
 	private void izvrsiZamenu(){
-		try{
-			double konacniIznos = 
-					glavniProzor.sistem.izvrsiTransakciju(valuta,
-							rdbtnProdaja.isSelected(), 
-							Double.parseDouble(textFieldIznos.getText()));
-		
-			textFieldKonacniIznos.setText(""+konacniIznos);
-		} catch (Exception e1) {
-		JOptionPane.showMessageDialog(contentPane, e1.getMessage(),
-				"Greska", JOptionPane.ERROR_MESSAGE);
-	}
+		double izn = GUIKontroler.izvrsiZamenu(valuta, rdbtnProdaja.isSelected(), Double.parseDouble(textFieldIznos.getText()));
+		textFieldKonacniIznos.setText(""+izn);
 	}
 }
