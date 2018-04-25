@@ -118,7 +118,7 @@ public class MenjacnicaGUI extends JFrame {
 			btnNewButton = new JButton("Dodaj kurs");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					prikaziDodajKursGUI();
+					GUIKontroler.prikaziDodajKursGUI();
 				}
 			});
 			btnNewButton.setPreferredSize(new Dimension(140, 25));
@@ -130,7 +130,7 @@ public class MenjacnicaGUI extends JFrame {
 			btnObrisiKurs = new JButton("Obrisi kurs");
 			btnObrisiKurs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					prikaziObrisiKursGUI();
+					GUIKontroler.prikaziObrisiKursGUI(table);
 				}
 			});
 			btnObrisiKurs.setPreferredSize(new Dimension(140, 25));
@@ -142,7 +142,7 @@ public class MenjacnicaGUI extends JFrame {
 			btnIzvrsiZamenu = new JButton("Izvrsi zamenu");
 			btnIzvrsiZamenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					prikaziIzvrsiZamenuGUI();
+					GUIKontroler.prikaziIzvrsiZamenuGUI(table);
 				}
 			});
 			btnIzvrsiZamenu.setPreferredSize(new Dimension(140, 25));
@@ -222,8 +222,6 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return mntmAbout;
 	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-	}
 	
 	private void ugasiAplikaciju() {
 		int opcija = JOptionPane.showConfirmDialog(contentPane,
@@ -256,18 +254,6 @@ public class MenjacnicaGUI extends JFrame {
 	public void prikaziSveValute(MenjacnicaInterface menj) {
 		MenjacnicaTableModel model = (MenjacnicaTableModel)(table.getModel());
 		model.staviSveValuteUModel(menj.vratiKursnuListu());
-	}
-	
-	private void prikaziDodajKursGUI() {
-		GUIKontroler.prikaziDodajKursGUI();
-	}
-
-	private void prikaziObrisiKursGUI() {
-		GUIKontroler.prikaziObrisiKursGUI(table);
-	}
-	
-	private void prikaziIzvrsiZamenuGUI() {
-		GUIKontroler.prikaziIzvrsiZamenuGUI(table);
 	}
 
 	private JTable getTable() {
