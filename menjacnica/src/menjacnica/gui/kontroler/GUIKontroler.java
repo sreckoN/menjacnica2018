@@ -45,7 +45,7 @@ public class GUIKontroler {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
 				menjacnica.ucitajIzFajla(file.getAbsolutePath());
-				gp.prikaziSveValute();
+				gp.prikaziSveValute(menjacnica);
 			}	
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage(),
