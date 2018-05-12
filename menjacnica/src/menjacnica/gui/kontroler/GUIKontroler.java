@@ -70,7 +70,7 @@ public class GUIKontroler {
 	}
 	
 	public static void prikaziDodajKursGUI() {
-		DodajKursGUI prozor = new DodajKursGUI(gp);
+		DodajKursGUI prozor = new DodajKursGUI();
 		prozor.setLocationRelativeTo(gp);
 		prozor.setVisible(true);
 	}
@@ -103,7 +103,7 @@ public class GUIKontroler {
 
 		if (table.getSelectedRow() != -1) {
 			MenjacnicaTableModel model = (MenjacnicaTableModel)(table.getModel());
-			ObrisiKursGUI prozor = new ObrisiKursGUI(gp,
+			ObrisiKursGUI prozor = new ObrisiKursGUI(
 					model.vratiValutu(table.getSelectedRow()));
 			prozor.setLocationRelativeTo(null);
 			prozor.setVisible(true);
@@ -124,7 +124,7 @@ public class GUIKontroler {
 	public static void prikaziIzvrsiZamenuGUI(JTable table) {
 		if (table.getSelectedRow() != -1) {
 			MenjacnicaTableModel model = (MenjacnicaTableModel)(table.getModel());
-			IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI(gp,
+			IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI(
 					model.vratiValutu(table.getSelectedRow()));
 			prozor.setLocationRelativeTo(null);
 			prozor.setVisible(true);
